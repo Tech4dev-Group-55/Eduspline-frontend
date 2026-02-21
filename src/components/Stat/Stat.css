@@ -1,0 +1,40 @@
+.stat {
+  background-color: #F3F4F6;
+  padding: 20px 40px;
+}
+
+.stat-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  align-items: center;
+  justify-items: center;
+}
+
+.stat-image {
+  max-width: 150px;  /* Limit maximum width */
+  max-height: 60px;  /* Limit height - adjust this number */
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.85;  /* Make slightly lighter/less bold */
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .stat {
+    padding: 30px 20px;
+  }
+
+  .stat-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .stat-image {
+    max-width: 130px;
+    max-height: 50px;
+  }
+}
