@@ -1,0 +1,161 @@
+.btn {
+  font-family: inherit;
+  font-weight: 500;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Sizes */
+.btn-small {
+  padding: 8px 20px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Nav size - between small and medium, perfect for navbar */
+.btn-nav {
+  padding: 7px 32px;
+  font-size: 14px;
+  line-height: 1.5;
+  min-width: 120px;
+}
+
+.btn-medium {
+  padding: 8px 45px;
+  font-size: 15px;
+  line-height: 1.5;
+  min-width: 200px;
+}
+
+.btn-large {
+  padding: 12px 28px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Primary Blue (Sign up button) */
+.btn-primary {
+  background-color: #0D47F1;
+  color: white;
+  border-color: #0D47F1;
+}
+
+.btn-primary:hover {
+  background-color: #0A38C7;
+  border-color: #0A38C7;
+}
+
+/* Secondary (Log in button - BLUE border and text) */
+.btn-secondary {
+  background-color: white;
+  color: #0D47F1;
+  border: 2px solid #0D47F1;
+}
+
+.btn-secondary:hover {
+  background-color: #F0F5FF;
+  color: #0D47F1;
+  border-color: #0D47F1;
+}
+
+/* White variant (for "Get Started" in hero) */
+.btn-white {
+  background-color: white;
+  color: #0D47F1;
+  border: 2px solid white;
+}
+
+.btn-white:hover {
+  background-color: #F0F5FF;
+  color: #0D47F1;
+  border-color: white;
+}
+
+/* Outline variant */
+.btn-outline.btn-secondary {
+  background-color: transparent;
+  color: #0D47F1;
+  border: 2px solid #0D47F1;
+}
+
+.btn-outline.btn-secondary:hover {
+  background-color: #F0F5FF;
+}
+
+/* Orange variant */
+.btn-orange {
+  background-color: #FF8C00;
+  color: white;
+  border-color: #FF8C00;
+}
+
+.btn-orange:hover {
+  background-color: #E67E00;
+  border-color: #E67E00;
+}
+
+/* Gray variant */
+.btn-gray {
+  background-color: #6B7280;
+  color: white;
+  border-color: #6B7280;
+}
+
+.btn-gray:hover {
+  background-color: #4B5563;
+  border-color: #4B5563;
+}
+
+/* Dark variant */
+.btn-dark {
+  background-color: #1F2937;
+  color: white;
+  border-color: #1F2937;
+}
+
+.btn-dark:hover {
+  background-color: #111827;
+  border-color: #111827;
+}
+
+/* Outline variants for other colors */
+.btn-outline.btn-primary {
+  background-color: transparent;
+  color: #0D47F1;
+  border: 2px solid #0D47F1;
+}
+
+.btn-outline.btn-primary:hover {
+  background-color: #0D47F1;
+  color: white;
+}
+
+.btn-outline.btn-orange {
+  background-color: transparent;
+  color: #FF8C00;
+  border: 2px solid #FF8C00;
+}
+
+.btn-outline.btn-orange:hover {
+  background-color: #FF8C00;
+  color: white;
+}
+
+/* Disabled state */
+.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Focus state */
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(13, 71, 241, 0.2);
+}

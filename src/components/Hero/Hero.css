@@ -1,0 +1,149 @@
+.hero {
+  background: linear-gradient(135deg, #000B33 0%, #002BCC 100%);
+  padding: 80px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Wave pattern background */
+.hero::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 50px,
+      rgba(255, 255, 255, 0.03) 50px,
+      rgba(255, 255, 255, 0.03) 100px
+    );
+  opacity: 0.5;
+}
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+  line-height: 1.3;
+  position: relative;
+  display: inline-block;
+}
+
+/* White glowing underline under heading */
+.hero-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background: white;
+  box-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+.hero-description {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.95);
+  max-width: 750px;
+  margin: 40px auto 35px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 35px;
+}
+
+/* Hero-specific button override for "Request a Demo" */
+.hero-demo-btn {
+  color: white !important;
+  border-color: white !important;
+  background-color: transparent !important;
+}
+
+.hero-demo-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  border-color: white !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero {
+    padding: 50px 20px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    margin-bottom: 15px;
+    line-height: 1.2;
+  }
+
+  .hero-title::after {
+    bottom: -10px;
+    width: 90%;
+    height: 2px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+    margin: 25px auto 30px;
+    line-height: 1.5;
+    padding: 0 10px;
+  }
+
+  .hero-buttons {
+    flex-direction: row;  /* Keep them side by side */
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+
+  .hero-buttons button {
+    padding: 8px 24px;  /* Smaller buttons for mobile */
+    font-size: 13px;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 40px 15px;
+  }
+
+  .hero-title {
+    font-size: 24px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+  }
+
+  .hero-buttons button {
+    padding: 7px 20px;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,127 @@
+.about {
+  background-color: #E5E7EB;
+  padding: 40px 40px;  /* Reduced from 60px */
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;  /* Reduced from 60px */
+  align-items: center;
+}
+
+/* Image Section */
+.about-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 380px;  /* Reduced from 450px */
+  height: auto;
+  border-radius: 14px;  /* Slightly smaller */
+  border: 6px solid white;  /* Reduced from 8px */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+/* Content Section */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;  /* Reduced from 15px */
+}
+
+.about-content h2 {
+  font-size: 30px;  /* Reduced from 36px */
+  font-weight: 700;
+  color: #1F2937;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Orange underline */
+.orange-line {
+  width: 70px;  /* Reduced from 80px */
+  height: 3px;  /* Reduced from 4px */
+  background-color: #FF8C00;
+  margin: 3px 0 10px 0;  /* Reduced spacing */
+}
+
+/* Orange subtitle */
+.about-subtitle {
+  font-size: 14px;  /* Reduced from 16px */
+  font-weight: 600;
+  color: #FF8C00;
+  margin: 0 0 8px 0;  /* Reduced from 10px */
+  line-height: 1.4;
+}
+
+.about-content p {
+  font-size: 14px;  /* Reduced from 15px */
+  font-weight: 400;
+  color: #4B5563;
+  line-height: 1.6;  /* Reduced from 1.7 */
+  margin: 0 0 8px 0;  /* Reduced from 12px */
+}
+
+/* Mobile Responsive */
+@media (max-width: 968px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .about-image img {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 30px 20px;
+  }
+
+  .about-container {
+    gap: 25px;
+  }
+
+  .about-content h2 {
+    font-size: 24px;
+  }
+
+  .about-subtitle {
+    font-size: 13px;
+  }
+
+  .about-content p {
+    font-size: 13px;
+  }
+
+  .about-image img {
+    border-radius: 12px;
+    border: 5px solid white;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 25px 15px;
+  }
+
+  .about-content h2 {
+    font-size: 22px;
+  }
+
+  .about-subtitle {
+    font-size: 12px;
+  }
+
+  .about-content p {
+    font-size: 12px;
+  }
+}
