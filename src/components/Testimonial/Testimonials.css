@@ -1,0 +1,172 @@
+/* =========================================
+   Testimonials Section
+   ========================================= */
+
+/* Import Poppins from Google Fonts — add this link in your index.html instead if preferred:
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet"> */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
+
+.testimonials-section {
+  background-color: #F2F5FF; /* soft blue-grey background matching the design */
+  padding: 72px 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.testimonials-container {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+/* ---- Header ---- */
+.testimonials-header {
+  margin-bottom: 48px;
+}
+
+.testimonials-title {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: #00030D;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+}
+
+.testimonials-underline {
+  display: block;
+  width: 160px;
+  height: 7px;
+  background-color: #FFB166; /* orange accent matching the design */
+  border-radius: 2px;
+}
+
+/* ---- Grid ---- */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ---- Card ---- */
+.testimonial-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
+}
+
+/* ---- Stars ---- */
+.stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.star-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* ---- Quote ---- */
+.testimonial-quote {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #374151;
+  margin: 0;
+  flex: 1;
+}
+
+/* ---- Author ---- */
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background-color: #e5e7eb;
+}
+
+/* Fallback initials circle */
+.author-avatar-placeholder {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #d1d5db;
+  color: #6b7280;
+  font-size: 1rem;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.author-role {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.3;
+}
+
+.author-name {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+/* =========================================
+   Responsive
+   ========================================= */
+
+/* Tablet: 2 columns */
+@media (max-width: 900px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 560px) {
+  .testimonials-section {
+    padding: 48px 16px;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-header {
+    margin-bottom: 32px;
+  }
+
+  .testimonial-card {
+    padding: 24px 20px;
+  }
+}
