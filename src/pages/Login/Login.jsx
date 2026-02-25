@@ -1,118 +1,65 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
+import { useAuth } from '../../context/AuthContext';
 import './Login.css';
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
+  const { login, loginWithGoogle, loading, error, clearError } = useAuth();
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [formError, setFormError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-    if (errors[name]) {
-      setErrors({ ...errors, [name]: '' });
-    }
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (formError) setFormError('');
+    if (error) clearError();
   };
 
   const validate = () => {
-    const newErrors = {};
-    
-    if (!formData.email) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
-    }
-    
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-    } else if (formData.password.length < 8) {
-      newErrors.password = 'Must be 8 characters or more';
-    }
-    
-    return newErrors;
+    if (!formData.email) return 'Email is required';
+    if (!/\S+@\S+\.\S+/.test(formData.email)) return 'Email is invalid';
+    if (!formData.password) return 'Password is required';
+    if (formData.password.length < 8) return 'Password must be 8 characters or more';
+    return null;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const newErrors = validate();
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    const validationError = validate();
+    if (validationError) {
+      setFormError(validationError);
       return;
     }
 
-    setLoading(true);
-    
-    try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password
-        })
-      });
+    const result = await login({ email: formData.email, password: formData.password });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        // Save token to localStorage
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        
-        // Redirect based on user role
-        const role = data.user?.role || 'learner';
-        if (role === 'admin') {
-          window.location.href = '/admin/dashboard';
-        } else if (role === 'educator') {
-          window.location.href = '/educator/dashboard';
-        } else {
-          window.location.href = '/learner/dashboard';
-        }
-      } else {
-        setErrors({ form: data.message || 'Login failed. Please try again.' });
-      }
-    } catch (error) {
-      // Backend not ready - simulate success for testing
-      console.log('Backend not connected. Simulating login...');
-      alert('Login successful! (Demo mode - backend not connected)\n\nRedirecting to dashboard...');
-      window.location.href = '/';
-    } finally {
-      setLoading(false);
+    if (result.success) {
+      navigate(result.redirectTo, { replace: true });
+    } else {
+      setFormError(result.message);
     }
   };
 
-  const handleGoogleLogin = () => {
-    // TODO: Implement Google OAuth when ready
-    console.log('Google login clicked');
-    alert('Google Login will be implemented when backend is ready!');
-  };
+  const displayError = formError || error;
 
   return (
     <div className="login-page">
       <div className="login-card">
         <h1 className="login-title">Log in</h1>
 
-        {errors.form && (
-          <div className="error-banner">
-            {errors.form}
+        {displayError && (
+          <div className="error-banner" role="alert">
+            {displayError}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="login-form">
-          
-          {/* Email Field */}
+        <form onSubmit={handleSubmit} className="login-form" noValidate>
+
+          {/* Email */}
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
@@ -122,12 +69,12 @@ const Login = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="globaluniversity@gmail.com"
-              className={errors.email ? 'error' : ''}
+              autoComplete="email"
             />
             <span className="helper-text">Do not use your personal email</span>
           </div>
 
-          {/* Password Field */}
+          {/* Password */}
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <div className="password-input-wrapper">
@@ -138,16 +85,17 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className={errors.password ? 'error' : ''}
+                autoComplete="current-password"
               />
               <button
                 type="button"
                 className="toggle-password"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setShowPassword((v) => !v)}
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
-                <img 
-                  src={showPassword ? "/icons/eye-open.png" : "/icons/eye-closed.png"} 
-                  alt="toggle password visibility"
+                <img
+                  src={showPassword ? '/icons/eye-open.png' : '/icons/eye-closed.png'}
+                  alt=""
                   className="eye-icon"
                 />
               </button>
@@ -158,33 +106,28 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Continue Button */}
-          <Button 
-            variant="primary" 
-            size="large" 
+          <Button
+            variant="primary"
+            size="large"
             type="submit"
             disabled={loading}
             className="continue-button"
           >
-            {loading ? 'Logging in...' : 'Continue'}
+            {loading ? 'Logging in…' : 'Continue'}
           </Button>
         </form>
 
-        {/* Divider */}
-        <div className="divider">
-          <span>Or</span>
-        </div>
+        <div className="divider"><span>Or</span></div>
 
-        {/* Google Login */}
-        <button 
+        <button
           type="button"
           className="google-button"
-          onClick={handleGoogleLogin}
+          onClick={loginWithGoogle}
+          disabled={loading}
         >
           Continue with Google
         </button>
 
-        {/* Sign up link */}
         <p className="signup-link">
           Don't have an account? <Link to="/signup">Sign up</Link>
         </p>

@@ -1,115 +1,96 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../../components/Button/Button';
+import { useAuth } from '../../context/AuthContext';
 import './Signup.css';
 
 const Signup = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
-  const [showPassword, setShowPassword] = useState(false);
+  const { signup, loginWithGoogle, loading, error, clearError } = useAuth();
+
+  const [formData, setFormData] = useState({ email: '', password: '', confirmPassword: '' });
+  const [showPassword, setShowPassword]               = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [formError, setFormError]   = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-    if (errors[name]) {
-      setErrors({ ...errors, [name]: '' });
-    }
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (formError) setFormError('');
+    if (error) clearError();
   };
 
   const validate = () => {
-    const newErrors = {};
-    
-    if (!formData.email) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
-    }
-    
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-    } else if (formData.password.length < 8) {
-      newErrors.password = 'Must be 8 characters or more';
-    }
-    
-    if (!formData.confirmPassword) {
-      newErrors.confirmPassword = 'Please confirm your password';
-    } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
-    }
-    
-    return newErrors;
+    if (!formData.email) return 'Email is required';
+    if (!/\S+@\S+\.\S+/.test(formData.email)) return 'Email is invalid';
+    if (!formData.password) return 'Password is required';
+    if (formData.password.length < 8) return 'Password must be 8 characters or more';
+    if (!formData.confirmPassword) return 'Please confirm your password';
+    if (formData.password !== formData.confirmPassword) return 'Passwords do not match';
+    return null;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const newErrors = validate();
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+    const validationError = validate();
+    if (validationError) {
+      setFormError(validationError);
       return;
     }
 
-    setLoading(true);
-    
-    try {
-      const response = await fetch('/api/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password
-        })
-      });
+    const result = await signup({ email: formData.email, password: formData.password });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        // Success - redirect to login page
-        alert('Account created successfully! Please log in.');
-        window.location.href = '/login';
-      } else {
-        setErrors({ form: data.message || 'Signup failed. Please try again.' });
-      }
-    } catch (error) {
-      // Backend not ready - simulate success for testing
-      console.log('Backend not connected. Simulating signup...');
-      alert('Account created! (Demo mode - backend not connected)\n\nRedirecting to login page...');
-      window.location.href = '/login';
-    } finally {
-      setLoading(false);
+    if (result.success) {
+      setSuccessMsg(result.message);
+      setFormData({ email: '', password: '', confirmPassword: '' });
+    } else {
+      setFormError(result.message);
     }
   };
 
-  const handleGoogleSignup = () => {
-    // TODO: Implement Google OAuth when ready
-    console.log('Google signup clicked');
-    alert('Google Sign-up will be implemented when backend is ready!');
-  };
+  const displayError = formError || error;
+
+  // ── Success state ──────────────────────────────────────────────────────────
+  if (successMsg) {
+    return (
+      <div className="signup-page">
+        <div className="signup-card signup-card--success">
+          <div className="success-icon" aria-hidden="true">✉️</div>
+          <h1 className="signup-title">Check your email</h1>
+          <p className="success-message">{successMsg}</p>
+          <p className="helper-text" style={{ marginTop: '8px' }}>
+            Didn't receive it? Check your spam folder or{' '}
+            <button
+              type="button"
+              className="link-button"
+              onClick={() => setSuccessMsg('')}
+            >
+              try again
+            </button>
+            .
+          </p>
+          <p className="signup-link" style={{ marginTop: '24px' }}>
+            Already verified? <Link to="/login">Log in</Link>
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="signup-page">
       <div className="signup-card">
         <h1 className="signup-title">Sign up</h1>
 
-        {errors.form && (
-          <div className="error-banner">
-            {errors.form}
+        {displayError && (
+          <div className="error-banner" role="alert">
+            {displayError}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="signup-form">
-          
-          {/* Email Field */}
+        <form onSubmit={handleSubmit} className="signup-form" noValidate>
+
+          {/* Email */}
           <div className="form-group">
             <label htmlFor="email">Institution's email</label>
             <input
@@ -119,12 +100,12 @@ const Signup = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="globaluniversity@gmail.com"
-              className={errors.email ? 'error' : ''}
+              autoComplete="email"
             />
             <span className="helper-text">Do not use your personal email</span>
           </div>
 
-          {/* Password Field */}
+          {/* Password */}
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <div className="password-input-wrapper">
@@ -135,16 +116,17 @@ const Signup = () => {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className={errors.password ? 'error' : ''}
+                autoComplete="new-password"
               />
               <button
                 type="button"
                 className="toggle-password"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() => setShowPassword((v) => !v)}
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
-                <img 
-                  src={showPassword ? "/icons/eye-open.png" : "/icons/eye-closed.png"} 
-                  alt="toggle password visibility"
+                <img
+                  src={showPassword ? '/icons/eye-open.png' : '/icons/eye-closed.png'}
+                  alt=""
                   className="eye-icon"
                 />
               </button>
@@ -155,7 +137,7 @@ const Signup = () => {
             </div>
           </div>
 
-          {/* Confirm Password Field */}
+          {/* Confirm Password */}
           <div className="form-group">
             <label htmlFor="confirmPassword">Confirm password</label>
             <div className="password-input-wrapper">
@@ -166,16 +148,17 @@ const Signup = () => {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className={errors.confirmPassword ? 'error' : ''}
+                autoComplete="new-password"
               />
               <button
                 type="button"
                 className="toggle-password"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                onClick={() => setShowConfirmPassword((v) => !v)}
+                aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
               >
-                <img 
-                  src={showConfirmPassword ? "/icons/eye-open.png" : "/icons/eye-closed.png"} 
-                  alt="toggle password visibility"
+                <img
+                  src={showConfirmPassword ? '/icons/eye-open.png' : '/icons/eye-closed.png'}
+                  alt=""
                   className="eye-icon"
                 />
               </button>
@@ -186,31 +169,31 @@ const Signup = () => {
             </div>
           </div>
 
-          {/* Continue Button */}
-          <Button 
-            variant="primary" 
-            size="large" 
+          <Button
+            variant="primary"
+            size="large"
             type="submit"
             disabled={loading}
             className="continue-button"
           >
-            {loading ? 'Creating Account...' : 'Continue'}
+            {loading ? 'Creating account…' : 'Continue'}
           </Button>
         </form>
 
-        {/* Divider */}
-        <div className="divider">
-          <span>Or</span>
-        </div>
+        <div className="divider"><span>Or</span></div>
 
-        {/* Google Signup */}
-        <button 
+        <button
           type="button"
           className="google-button"
-          onClick={handleGoogleSignup}
+          onClick={loginWithGoogle}
+          disabled={loading}
         >
           Continue with Google
         </button>
+
+        <p className="signup-link" style={{ marginTop: '16px' }}>
+          Already have an account? <Link to="/login">Log in</Link>
+        </p>
       </div>
     </div>
   );
