@@ -1,0 +1,240 @@
+/* ── Section ─────────────────────────────────────────────────────────────── */
+.sai {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e8edf3;
+  overflow: hidden;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+.sai__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sai__title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.sai__badge {
+  background: #dcfce7;
+  color: #16a34a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.01em;
+}
+
+/* ── Table wrapper ───────────────────────────────────────────────────────── */
+.sai__table-wrap {
+  overflow-x: auto;
+}
+
+/* ── Table ───────────────────────────────────────────────────────────────── */
+.sai__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.sai__table thead tr {
+  background: #f8fafc;
+}
+
+.sai__table th {
+  padding: 11px 20px;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+  white-space: nowrap;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sai__row {
+  border-bottom: 1px solid #f8fafc;
+  transition: background 0.15s;
+}
+
+.sai__row:hover {
+  background: #fafbfc;
+}
+
+.sai__row:last-child {
+  border-bottom: none;
+}
+
+.sai__table td {
+  padding: 13px 20px;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.sai__name {
+  font-weight: 500;
+  color: #0f172a !important;
+}
+
+.sai__email {
+  color: #64748b !important;
+  font-size: 0.82rem !important;
+}
+
+.sai__engagement {
+  font-weight: 500;
+}
+
+.sai__empty {
+  text-align: center;
+  color: #94a3b8;
+  padding: 40px 20px !important;
+  font-size: 0.88rem;
+}
+
+/* ── Badges ──────────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Risk */
+.risk--critical  { color: #dc2626; }
+.risk--critical  .badge__dot { background: #dc2626; }
+
+.risk--at-risk   { color: #d97706; }
+.risk--at-risk   .badge__dot { background: #d97706; }
+
+.risk--stable    { color: #2563eb; }
+.risk--stable    .badge__dot { background: #2563eb; }
+
+.risk--excellent { color: #16a34a; }
+.risk--excellent .badge__dot { background: #16a34a; }
+
+/* Intervention */
+.intervention--progress { color: #d97706; }
+.intervention--progress .badge__dot { background: #d97706; }
+
+.intervention--done     { color: #16a34a; }
+.intervention--done     .badge__dot { background: #16a34a; }
+
+.intervention--waiting  { color: #94a3b8; }
+.intervention--waiting  .badge__dot { background: #94a3b8; }
+
+.intervention--none     { color: #cbd5e1; }
+.intervention--none     .badge__dot { display: none; }
+
+/* ── Error ───────────────────────────────────────────────────────────────── */
+.sai__error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fef2f2;
+  border-bottom: 1px solid #fecaca;
+  padding: 12px 24px;
+  font-size: 0.85rem;
+  color: #dc2626;
+}
+
+/* ── Pagination ──────────────────────────────────────────────────────────── */
+.sai__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 14px 24px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.sai__page-btn {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sai__page-btn:hover:not(:disabled) {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.sai__page-btn--active {
+  background: #6366f1;
+  border-color: #6366f1;
+  color: #fff;
+}
+
+.sai__page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── Skeleton ────────────────────────────────────────────────────────────── */
+.skeleton-row td {
+  padding: 14px 20px;
+}
+
+.skeleton-cell {
+  height: 14px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.skeleton-row:nth-child(odd) .skeleton-cell  { width: 75%; }
+.skeleton-row:nth-child(even) .skeleton-cell { width: 60%; }
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Total badge (replaces avg engagement badge) ─────────────────────────── */
+.sai__total-badge {
+  background: #dcfce7;
+  color: #16a34a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* ── Extra columns ───────────────────────────────────────────────────────── */
+.sai__confidence {
+  font-size: 0.82rem !important;
+  color: #64748b !important;
+  font-weight: 500;
+}
+
+.sai__date {
+  font-size: 0.8rem !important;
+  color: #94a3b8 !important;
+}

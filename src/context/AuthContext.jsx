@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
-const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+const BASE_URL = 'https://eduspline-backend.onrender.com/api';
 
 const AuthContext = createContext(null);
 
@@ -43,18 +43,13 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
- const getRoleRedirect = (role) => {
-
-    // for now return all role to admin dashboard until we build our other dashboards and implment role-based routing on the backend
-    return '/admin-dashboard' 
-   
-  // TODO: Later, uncomment this for role-based routing:
-  // switch (role) {
-  //   case 'admin':    return '/admin-dashboard';
-  //   case 'educator': return '/educator/dashboard';
-  //   default:         return '/learner/dashboard';
-  // }
-};
+  const getRoleRedirect = (role) => {
+    switch (role) {
+      case 'admin':    return '/learner/dashboard';
+      case 'educator': return '/educator/dashboard';
+      default:         return '/admin-dashboard';
+    }
+  };
 
   // ─── signup ──────────────────────────────────────────────────────────────
   // Returns { success, message } — does NOT log the user in (needs email verify)
@@ -107,7 +102,7 @@ export const AuthProvider = ({ children }) => {
         return { success: false, message: msg };
       }
 
-      persistSession(data.token, data.user);
+      persistSession(data.accessToken, data.user);
       const redirectTo = getRoleRedirect(data.user?.role);
       return { success: true, redirectTo };
     } catch {

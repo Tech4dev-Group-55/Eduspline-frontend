@@ -75,6 +75,22 @@
   height: 100%;
   object-fit: cover;
 }
+/* Add these to your existing TopBar.css */
+
+.user-avatar-initial {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
 
 @media (max-width: 768px) {
   .topbar {
