@@ -1,0 +1,16 @@
+.insights-content {
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.insights-content h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1F2937;
+  margin-bottom: 16px;
+}
+
+.insights-content p {
+  font-size: 16px;
+  color: #6B7280;
+}

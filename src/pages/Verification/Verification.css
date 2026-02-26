@@ -1,0 +1,129 @@
+
+.verification-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;  /* Moves content to top */
+  justify-content: center;
+  /* Blue to white gradient background */
+  background: linear-gradient(180deg, #E8F0FE 0%, #F5F8FF 40%, #FFFFFF 100%);
+  padding: 60px 20px 40px;  /* Moves content higher */
+}
+
+.verification-card {
+  background: transparent;
+  border-radius: 8px;
+  padding: 40px 30px;
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.verification-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1F2937;
+  text-align: center;
+  margin: 0 0 35px 0;
+}
+
+/* Mailbox Icon */
+.mailbox-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 30px auto;
+  width: 100%;
+}
+
+.mailbox-icon img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  /* Make icon blue */
+  filter: invert(45%) sepia(89%) saturate(1678%) hue-rotate(201deg) brightness(97%) contrast(93%);
+}
+
+/* Verification Message */
+.verification-message {
+  font-size: 14px;
+  color: #6B7280;
+  line-height: 1.6;
+  margin: 0 auto 25px auto;
+  max-width: 380px;
+  text-align: center;
+}
+
+.verification-message.success {
+  color: #059669;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Resend Button */
+.resend-button {
+  background: transparent;
+  border: none;
+  color: #0D47F1;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: all 0.2s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.resend-button:hover {
+  color: #0A38C7;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .verification-page {
+    padding: 40px 20px 30px;
+  }
+
+  .verification-card {
+    padding: 30px 25px;
+  }
+
+  .verification-title {
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
+
+  .mailbox-icon img {
+    width: 75px;
+    height: 75px;
+  }
+
+  .verification-message {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .verification-page {
+    padding: 30px 15px 20px;
+  }
+
+  .verification-card {
+    padding: 25px 20px;
+  }
+
+  .verification-title {
+    font-size: 24px;
+  }
+
+  .mailbox-icon img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .verification-message {
+    font-size: 12px;
+  }
+}

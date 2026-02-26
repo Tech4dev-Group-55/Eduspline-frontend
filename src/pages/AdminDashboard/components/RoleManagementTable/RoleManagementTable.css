@@ -1,0 +1,94 @@
+.role-table-container {
+  width: 100%;
+}
+
+.role-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.role-table thead {
+  background: #F9FAFB;
+}
+
+.role-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6B7280;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.role-table td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #1F2937;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.role-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.role-table tbody tr:hover {
+  background: #F9FAFB;
+}
+
+.status-select {
+  padding: 6px 32px 6px 12px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 12px;
+}
+
+.status-select.active {
+  background-color: #D1FAE5;
+  color: #065F46;
+  border-color: #6EE7B7;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23065F46' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+}
+
+.status-select.deactivate {
+  background-color: #FEF3C7;
+  color: #92400E;
+  border-color: #FCD34D;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2392400E' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+}
+
+.add-new-btn {
+  padding: 10px 24px;
+  background: white;
+  border: 1px solid #0D47F1;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0D47F1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-new-btn:hover {
+  background: #F0F4FF;
+}
+
+@media (max-width: 768px) {
+  .role-table {
+    font-size: 13px;
+  }
+
+  .role-table th,
+  .role-table td {
+    padding: 10px 12px;
+  }
+}

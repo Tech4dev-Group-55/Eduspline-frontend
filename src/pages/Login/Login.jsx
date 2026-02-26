@@ -71,6 +71,7 @@ const Login = () => {
               placeholder="globaluniversity@gmail.com"
               autoComplete="email"
             />
+            {/* {errors.email && <span className="error-text">{errors.email}</span>} */}
             <span className="helper-text">Do not use your personal email</span>
           </div>
 
@@ -100,6 +101,7 @@ const Login = () => {
                 />
               </button>
             </div>
+            {/* {errors.password && <span className="error-text">{errors.password}</span>} */}
             <div className="password-requirements">
               <span className="helper-text">Must be 8 characters or more</span>
               <span className="char-counter">{formData.password.length}/8</span>
