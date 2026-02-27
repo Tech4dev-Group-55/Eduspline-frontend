@@ -1,0 +1,182 @@
+.pricing-section {
+   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+   color: #333;
+   display: flex;
+   flex-direction: column;
+}
+
+.pricing-top-section {
+   padding: 80px 20px 100px 20px;
+   background-color: #f8fafc;
+}
+
+.pricing-section .container {
+   max-width: 1200px;
+   margin: 0 auto;
+}
+
+.pricing-section .section-header {
+   margin-bottom: 60px;
+}
+
+.pricing-section .section-title {
+   font-size: 2.5rem;
+   font-weight: 700;
+   color: #111827;
+   position: relative;
+   display: inline-block;
+   margin: 0;
+}
+
+.pricing-section .title-underline {
+   position: absolute;
+   bottom: -10px;
+   left: 0;
+   width: 90px;
+   height: 6px;
+   background-color: #ffb067;
+   border-radius: 3px;
+}
+
+.pricing-cards {
+   display: flex;
+   gap: 30px;
+   justify-content: center;
+   align-items: stretch;
+}
+
+.pricing-card {
+   flex: 1;
+   background-color: #e0e7ff;
+   /* Light indigo/blue */
+   border: 1px solid #a5b4fc;
+   /* Slightly darker indigo border */
+   border-radius: 8px;
+   padding: 40px 30px;
+   min-width: 250px;
+   position: relative;
+}
+
+.pricing-tier-name {
+   font-size: 1.5rem;
+   font-weight: 600;
+   color: #1e1b4b;
+   /* Dark indigo */
+   margin: 0 0 20px 0;
+   text-align: center;
+}
+
+.card-divider {
+   height: 2px;
+   background-color: #9ca3af;
+   margin-bottom: 30px;
+   width: 50%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.pricing-features {
+   list-style-type: none;
+   padding: 0;
+   margin: 0;
+}
+
+.pricing-features li {
+   position: relative;
+   padding-left: 16px;
+   margin-bottom: 16px;
+   font-size: 0.95rem;
+   color: #374151;
+   line-height: 1.5;
+}
+
+.pricing-features li::before {
+   content: "•";
+   color: #4b5563;
+   position: absolute;
+   left: 0;
+   top: 0;
+   font-size: 1.2rem;
+   line-height: 1.2;
+}
+
+/* CTA Banner Area */
+.pricing-cta-banner {
+   background-color: #3b82f6;
+   /* Vibrant blue */
+   padding: 40px 20px;
+   width: 100%;
+}
+
+.banner-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 20px;
+}
+
+.banner-text-content {
+   flex: 1;
+}
+
+.banner-heading {
+   font-size: 1.25rem;
+   font-weight: 600;
+   color: #ffffff;
+   margin: 0 0 8px 0;
+}
+
+.banner-subheading {
+   font-size: 1.05rem;
+   color: #eff6ff;
+   margin: 0;
+}
+
+.btn-get-pricing {
+   background-color: #ff8a00;
+   /* Orange button */
+   color: #ffffff;
+   font-weight: 600;
+   font-size: 1rem;
+   padding: 12px 24px;
+   border: none;
+   border-radius: 6px;
+   cursor: pointer;
+   white-space: nowrap;
+   transition: background-color 0.2s ease;
+}
+
+.btn-get-pricing:hover {
+   background-color: #e67a00;
+}
+
+/* Mobile Responsive */
+@media (max-width: 992px) {
+   .pricing-cards {
+      flex-wrap: wrap;
+   }
+
+   .pricing-card {
+      flex: 1 1 calc(50% - 30px);
+   }
+}
+
+@media (max-width: 768px) {
+   .pricing-cards {
+      flex-direction: column;
+   }
+
+   .pricing-card {
+      flex: 1 1 auto;
+      width: 100%;
+   }
+
+   .banner-container {
+      flex-direction: column;
+      text-align: center;
+   }
+
+   .banner-button-container {
+      margin-top: 20px;
+   }
+}
