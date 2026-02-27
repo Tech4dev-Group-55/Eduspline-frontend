@@ -42,8 +42,9 @@ const GoogleCallback = () => {
         const payload = JSON.parse(atob(token.split('.')[1]));
         // payload contains { id, iat, exp } — build a minimal user object
         const user = {
-          id:   payload.id,
-          role: payload.role || 'learner', // fallback if role not in token
+          id:    payload.id,
+          email: payload.email || '',
+          role:  payload.role || 'admin',
         };
         const redirectTo = handleGoogleCallback(token, user);
         navigate(redirectTo, { replace: true });
