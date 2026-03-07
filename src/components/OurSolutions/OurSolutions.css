@@ -53,28 +53,17 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border: 1px solid #e5e7eb;
   background: white;
-  padding: 8px; /* Inner border to look like a frame */
+  padding: 8px;
+  /* Inner border to look like a frame */
 }
 
 .solution-image {
   width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  /* Remove default inline spacing */
   border-radius: 8px;
-  background-size: cover;
-  background-position: center;
-  background-color: #1f2937; /* Dark placeholder to simulate UI screenshot */
-}
-
-.solution-image.image-1 {
-  background-image: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
-}
-
-.solution-image.image-2 {
-  background-image: linear-gradient(135deg, #334155 0%, #0f172a 100%);
-}
-
-.solution-image.image-3 {
-  background-image: linear-gradient(135deg, #0e7490 0%, #0f172a 100%);
 }
 
 .solution-text-card {
@@ -86,12 +75,14 @@
   border: 1px solid #e5e7eb;
   position: relative;
   z-index: 10;
-  margin-left: -10%; /* Overlap image */
+  margin-left: -10%;
+  /* Overlap image */
 }
 
 .solution-item.reverse .solution-text-card {
   margin-left: 0;
-  margin-right: -10%; /* Overlap image in reverse mode */
+  margin-right: -10%;
+  /* Overlap image in reverse mode */
 }
 
 .solution-header {
@@ -108,10 +99,12 @@
 
 .icon {
   position: absolute;
-  top: -60px; /* positioned outside the card based on screenshots */
+  top: -60px;
+  /* positioned outside the card based on screenshots */
 }
 
-.chart-icon, .shield-icon {
+.chart-icon,
+.shield-icon {
   right: -30px;
 }
 
@@ -162,10 +155,12 @@
 
 /* Mobile Responsive */
 @media (max-width: 992px) {
-  .solution-item, .solution-item.reverse {
+
+  .solution-item,
+  .solution-item.reverse {
     flex-direction: column;
   }
-  
+
   .solution-image-container {
     width: 100%;
   }
@@ -174,10 +169,11 @@
     width: 90%;
     margin-left: 0;
     margin-right: 0;
-    margin-top: -40px; /* Overlap vertically instead */
+    margin-top: -40px;
+    /* Overlap vertically instead */
     padding: 30px 20px;
   }
-  
+
   .solution-item.reverse .solution-text-card {
     margin-right: 0;
   }
@@ -186,11 +182,12 @@
   .icon {
     top: -50px;
   }
-  
-  .chart-icon, .shield-icon {
+
+  .chart-icon,
+  .shield-icon {
     right: 10px;
   }
-  
+
   .building-icon {
     left: 10px;
   }
@@ -200,7 +197,7 @@
   .section-title {
     font-size: 2rem;
   }
-  
+
   .solutions-section {
     padding: 60px 15px;
   }

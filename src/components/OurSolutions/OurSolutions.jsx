@@ -1,9 +1,12 @@
 import React from 'react';
 import './OurSolutions.css';
+import image1 from '../../SolutionsImages/image 1.png';
+import image2 from '../../SolutionsImages/image 2.png';
+import image3 from '../../SolutionsImages/image 3.png';
 
 const OurSolutions = () => {
   return (
-    <section className="solutions-section">
+    <section id="solutions" className="solutions-section">
       <div className="container">
         <h2 className="section-title">
           Our Solutions
@@ -14,11 +17,9 @@ const OurSolutions = () => {
           {/* Solution 1 */}
           <div className="solution-item">
             <div className="solution-image-container">
-              <div className="solution-image placeholder-image image-1">
-                 {/* Placeholder for actual image */}
-              </div>
+              <img src={image1} alt="Analysis & Insight Engine" className="solution-image" />
             </div>
-            
+
             <div className="solution-text-card">
               <div className="solution-header">
                 <h3 className="solution-heading">Analysis & Insight Engine</h3>
@@ -67,22 +68,18 @@ const OurSolutions = () => {
               </ul>
               <p className="solution-footer">EduSpline works with your existing infrastructure, not against it.</p>
             </div>
-            
+
             <div className="solution-image-container">
-              <div className="solution-image placeholder-image image-2">
-                 {/* Placeholder for actual image */}
-              </div>
+              <img src={image2} alt="Enterprise & Institutional Integrations" className="solution-image" />
             </div>
           </div>
 
           {/* Solution 3 */}
           <div className="solution-item">
             <div className="solution-image-container">
-              <div className="solution-image placeholder-image image-3">
-                 {/* Placeholder for actual image */}
-              </div>
+              <img src={image3} alt="Early warning & Intervention model" className="solution-image" />
             </div>
-            
+
             <div className="solution-text-card">
               <div className="solution-header">
                 <h3 className="solution-heading">Early warning & Intervention model</h3>

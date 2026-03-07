@@ -35,7 +35,7 @@ const PRICING_PLANS = [
 
 const Pricing = () => {
   return (
-    <section className="pricing-section">
+    <section id="pricing" className="pricing-section">
       <div className="pricing-top-section">
         <div className="container">
           <div className="section-header">
@@ -62,7 +62,7 @@ const Pricing = () => {
       </div>
 
       {/* Bottom CTA Banner */}
-      <div className="pricing-cta-banner">
+      <div id="contact" className="pricing-cta-banner">
         <div className="container banner-container">
           <div className="banner-text-content">
             <p className="banner-heading">If learning outcomes matter to your organization, EduSpline is built for you.</p>

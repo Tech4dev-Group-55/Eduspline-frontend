@@ -8,7 +8,7 @@
     overflow: hidden;
 }
 
-.bg-pattern-placeholder {
+.wavy-bg-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -16,13 +16,13 @@
     height: 100%;
     z-index: 0;
     pointer-events: none;
-    /* Simple placeholder for curved lines */
-    background-image: radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
+    overflow: hidden;
 }
 
-/* We could add CSS-based curved lines using SVG background image if needed, 
-   but prompt said leave image part as placeholder. */
+.wavy-bg-svg {
+    width: 100%;
+    height: 100%;
+}
 
 .why-choose-us-section .container {
     max-width: 1200px;
