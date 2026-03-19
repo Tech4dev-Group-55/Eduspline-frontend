@@ -4,6 +4,8 @@ import Hero from '../../components/Hero/Hero';
 import Stat from '../../components/Stat/Stat';  // ← Singular
 import About from '../../components/About/About';
 import Testimonial from '../../components/Testimonial/Testimonials';
+import  Footer from "../../components/Footer/Footer"
+
 
 const Home = () => {
   return (
@@ -13,6 +15,7 @@ const Home = () => {
       <Stat />   {/* ← Singular */}
       <About />
       <Testimonial />
+     <Footer />
     </div>
   );
 };
