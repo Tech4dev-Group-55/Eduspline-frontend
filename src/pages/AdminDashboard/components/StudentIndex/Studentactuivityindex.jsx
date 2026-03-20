@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../../../context/AuthContext';
 import './StudentActivityIndex.css';
 
-const BASE_URL = 'https://eduspline-backend.onrender.com/api';
+const BASE_URL = 'https://eduspline-backend-0y8n.onrender.com/api';
 const PAGE_SIZE = 10;
 
 // ── Risk config — matches exact backend values ─────────────────────────────
