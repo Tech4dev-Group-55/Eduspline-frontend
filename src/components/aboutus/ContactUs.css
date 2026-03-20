@@ -1,0 +1,115 @@
+.contact-section {
+  padding: 60px 20px;
+  background-color: #f8fafc; /* Light background to match the project */
+  font-family: 'Inter', sans-serif;
+}
+
+.contact-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.contact-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 5px;
+}
+
+.contact-underline {
+  width: 50px;
+  height: 4px;
+  background-color: #f97316; /* Orange underline from Figma */
+  margin-bottom: 40px;
+}
+
+.contact-content {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.contact-image-container {
+  flex: 1;
+}
+
+.contact-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.contact-form-container {
+  flex: 1.5;
+  text-align: left;
+}
+
+.form-heading {
+  color: #1e3a8a;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.form-subtext {
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #1e293b;
+  margin-bottom: 5px;
+}
+
+.input-group input, 
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  outline-color: #3b82f6;
+}
+
+.send-button {
+  align-self: flex-end;
+  background-color: #2563eb;
+  color: white;
+  padding: 10px 40px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.send-button:hover {
+  background-color: #1d4ed8;
+}
+
+/* RESPONSIVENESS */
+@media (max-width: 768px) {
+  .contact-content {
+    flex-direction: column;
+  }
+  
+  .send-button {
+    width: 100%;
+  }
+}
