@@ -14,7 +14,7 @@ import './GoogleCallback.css';
  * We fetch /api/auth/me with the token to get the user object.
  */
 
-const BASE_URL = 'https://eduspline-backend.onrender.com/api';
+const BASE_URL = 'https://eduspline-backend-0y8n.onrender.com/api';
 
 const GoogleCallback = () => {
   const [searchParams]      = useSearchParams();
