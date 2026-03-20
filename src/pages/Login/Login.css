@@ -244,4 +244,67 @@
     font-size: 13px;
     padding: 9px 12px;
   }
+  /* ── Add these to your existing Login.css ───────────────────────────────────
+   Only new/changed rules are listed here. Merge with your current file.     */
+
+/* Error banner — icon + text inline */
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.error-banner-icon {
+  flex-shrink: 0;
+}
+
+/* Google-specific error sits below the button */
+.error-banner--google {
+  margin-top: 10px;
+  /* inherits .error-banner base styles from your existing CSS */
+}
+
+/* Field-level error text with icon */
+.error-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: #ef4444;   /* red-500 — adjust to match your design system */
+  margin-top: 5px;
+}
+
+/* Input border turns red when its field has an error */
+.form-group--error input {
+  border-color: #ef4444;
+  outline-color: #ef4444;
+}
+
+.form-group--error input:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+/* Char counter turns green once requirement is met */
+.char-counter--valid {
+  color: #16a34a;   /* green-600 */
+  font-weight: 600;
+}
+
+/* Eye toggle button — make sure it's styled neutrally */
+.toggle-password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: inherit;     /* inherits muted color from parent */
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.toggle-password:hover {
+  opacity: 0.75;
+}
 }

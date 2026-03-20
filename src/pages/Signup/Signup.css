@@ -226,4 +226,119 @@
     font-size: 13px;
     padding: 9px 12px;
   }
+
+  /* ── Add / merge these into your existing Signup.css ───────────────────────── */
+
+/* Reuse from Login.css (copy if not already present) */
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.error-banner-icon { flex-shrink: 0; }
+.error-banner--google { margin-top: 10px; }
+
+.error-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: #ef4444;
+  margin-top: 5px;
+}
+
+.success-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: #16a34a;
+  margin-top: 5px;
+}
+
+.form-group--error input {
+  border-color: #ef4444;
+  outline-color: #ef4444;
+}
+.form-group--error input:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.toggle-password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  padding: 4px;
+  border-radius: 4px;
+  transition: opacity 0.2s ease;
+}
+.toggle-password:hover { opacity: 0.75; }
+
+/* ── Strength meter ──────────────────────────────────────────────────────────── */
+.strength-meter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.strength-track {
+  flex: 1;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.35s ease, background-color 0.35s ease;
+}
+
+.strength-fill--weak   { background: #ef4444; } /* red    */
+.strength-fill--fair   { background: #f97316; } /* orange */
+.strength-fill--good   { background: #eab308; } /* yellow */
+.strength-fill--strong { background: #22c55e; } /* green  */
+.strength-fill--great  { background: #16a34a; } /* dark green */
+
+.strength-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 44px;
+  text-align: right;
+}
+.strength-label--weak   { color: #ef4444; }
+.strength-label--fair   { color: #f97316; }
+.strength-label--good   { color: #eab308; }
+.strength-label--strong { color: #22c55e; }
+.strength-label--great  { color: #16a34a; }
+
+/* ── Password rules checklist ────────────────────────────────────────────────── */
+.password-rules {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.password-rule {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.8rem;
+  transition: color 0.2s ease;
+}
+
+.password-rule--pass { color: #16a34a; }
+.password-rule--fail { color: #6b7280; } /* muted gray until met */
+
+.rule-icon--pass { color: #16a34a; flex-shrink: 0; }
+.rule-icon--fail { color: #d1d5db; flex-shrink: 0; }
 }

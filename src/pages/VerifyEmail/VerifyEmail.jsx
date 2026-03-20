@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import './VerifyEmail.css';
 
-const BASE_URL = 'https://eduspline-backend.onrender.com/api';
+const BASE_URL = 'https://eduspline-backend-0y8n.onrender.com/api';
 
 const STATUS = {
   PENDING:  'pending',

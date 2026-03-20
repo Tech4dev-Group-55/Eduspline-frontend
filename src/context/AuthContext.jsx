@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
-const BASE_URL = 'https://eduspline-backend.onrender.com/api';
+const BASE_URL = 'https://eduspline-backend-0y8n.onrender.com/api';
 
 const AuthContext = createContext(null);
 
