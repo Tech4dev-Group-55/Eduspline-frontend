@@ -39,15 +39,19 @@ export const AuthProvider = ({ children }) => {
   const clearSession = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('onboardingComplete');
     setToken(null);
     setUser(null);
   };
 
   const getRoleRedirect = (role) => {
+    if (role === 'admin') {
+      const onboarded = localStorage.getItem('onboardingComplete');
+      return onboarded === 'true' ? '/admin-dashboard' : '/onboarding';
+    }
     switch (role) {
-      case 'admin':    return '/learner/dashboard';
       case 'educator': return '/educator/dashboard';
-      default:         return '/admin-dashboard';
+      default:         return '/learner/dashboard';
     }
   };
 
