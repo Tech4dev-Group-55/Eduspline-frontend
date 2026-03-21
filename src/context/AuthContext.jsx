@@ -39,15 +39,19 @@ export const AuthProvider = ({ children }) => {
   const clearSession = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('onboardingComplete');
     setToken(null);
     setUser(null);
   };
 
   const getRoleRedirect = (role) => {
+    if (role === 'super_admin' || role === 'admin') {
+      const onboarded = localStorage.getItem('onboardingComplete');
+      return onboarded === 'true' ? '/admin-dashboard' : '/onboarding';
+    }
     switch (role) {
-      case 'admin':    return '/learner/dashboard';
       case 'educator': return '/educator/dashboard';
-      default:         return '/admin-dashboard';
+      default:         return '/learner/dashboard';
     }
   };
 
@@ -137,9 +141,9 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // ─── Role helpers ─────────────────────────────────────────────────────────
-  const isAdmin    = user?.role === 'admin';
+  const isAdmin    = user?.role === 'super_admin' || user?.role === 'admin';
   const isEducator = user?.role === 'educator';
-  const isLearner  = user?.role === 'learner' || (!isAdmin && !isEducator && !!user);
+  const isLearner  = user?.role === 'student' || (!isAdmin && !isEducator && !!user);
   const isLoggedIn = !!token && !!user;
 
   // ─── clearError ───────────────────────────────────────────────────────────

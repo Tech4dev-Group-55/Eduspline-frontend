@@ -7,6 +7,7 @@ import VerifyEmail from '../pages/VerifyEmail/VerifyEmail';
 import GoogleCallback from '../pages/GoogleCallback/GoogleCallback';
 import Verification from '../pages/Verification/Verification';
 import Onboarding from '../pages/Onboarding/Onboarding';
+import AcceptInvite from '../pages/AcceptInvite/AcceptInvite';
 import AdminDashboard from '../pages/AdminDashboard/AdminDashboard';
 import DashboardData from '../pages/AdminDashboard/DashboardData';
 import LoadingScreen from '../pages/AdminDashboard/LoadingScreen';
@@ -27,6 +28,7 @@ function AppRoutes() {
         <Route path="/auth/google/callback" element={<GoogleCallback />} />
         <Route path="/verification" element={<Verification />} />
         <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/accept-invite" element={<AcceptInvite />} />
         
         {/* Admin Dashboard Routes */}
         <Route path="/admin-dashboard" element={<DashboardData />} />
