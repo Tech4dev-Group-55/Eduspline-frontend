@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const getRoleRedirect = (role) => {
-    if (role === 'superadmin' || role === 'admin') {
+    if (role === 'super_admin' || role === 'admin') {
       const onboarded = localStorage.getItem('onboardingComplete');
       return onboarded === 'true' ? '/admin-dashboard' : '/onboarding';
     }
@@ -141,7 +141,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // ─── Role helpers ─────────────────────────────────────────────────────────
-  const isAdmin    = user?.role === 'superadmin' || user?.role === 'admin';
+  const isAdmin    = user?.role === 'super_admin' || user?.role === 'admin';
   const isEducator = user?.role === 'educator';
   const isLearner  = user?.role === 'student' || (!isAdmin && !isEducator && !!user);
   const isLoggedIn = !!token && !!user;

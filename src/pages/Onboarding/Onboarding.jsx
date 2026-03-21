@@ -168,13 +168,26 @@ const Onboarding = () => {
 
     try {
       if (teamMethod === 'manual') {
-        if (teamMembers.length === 0) {
-          setStep2Errors({ form: 'Please add at least one team member.' });
+        // If the form has a filled-in member, include it automatically
+        const pendingMembers = [...teamMembers];
+        const hasFilledForm = teamMember.name.trim() && teamMember.email.trim() && teamMember.role;
+        if (hasFilledForm) {
+          const errors = validateTeamMember();
+          if (Object.keys(errors).length > 0) {
+            setStep2Errors(errors);
+            setStep2Loading(false);
+            return;
+          }
+          pendingMembers.push({ ...teamMember });
+        }
+
+        if (pendingMembers.length === 0) {
+          setStep2Errors({ form: 'Please fill in at least one team member.' });
           setStep2Loading(false);
           return;
         }
         // Send each member individually
-        for (const member of teamMembers) {
+        for (const member of pendingMembers) {
           const res = await fetch(`${BASE_URL}/team/invite`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', ...authHeaders },
