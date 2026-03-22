@@ -1,0 +1,133 @@
+.why-choose-us-section {
+    padding: 80px 20px;
+    background-color: #f8fafc;
+    /* Very light slate background */
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #333;
+    position: relative;
+    overflow: hidden;
+}
+
+.wavy-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.wavy-bg-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.why-choose-us-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.why-choose-us-section .section-header {
+    margin-bottom: 60px;
+}
+
+.why-choose-us-section .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #111827;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+}
+
+.why-choose-us-section .title-underline {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    /* Shorter than Our Solutions */
+    height: 6px;
+    background-color: #fcd34d;
+    /* Yellow-orange underline for this section */
+    border-radius: 3px;
+}
+
+/* Looking closely at the screenshot, the underline is orange. */
+.why-choose-us-section .title-underline {
+    background-color: #ffb067;
+}
+
+.features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 60px;
+    column-gap: 40px;
+}
+
+.feature-item {
+    flex: 0 1 calc(33.333% - 40px);
+    /* Desktop 3 columns */
+    min-width: 280px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature-icon {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+}
+
+.feature-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 12px 0;
+}
+
+.feature-desc {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0 10px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 992px) {
+    .feature-item {
+        flex: 0 1 calc(50% - 40px);
+        /* Tablet 2 columns */
+    }
+}
+
+@media (max-width: 768px) {
+    .features-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-item {
+        flex: 0 1 auto;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .why-choose-us-section {
+        padding: 60px 20px;
+    }
+
+    .why-choose-us-section .section-title {
+        font-size: 2rem;
+    }
+}
