@@ -12,20 +12,46 @@ export const AuthProvider = ({ children }) => {
 
   // ─── Rehydrate from localStorage on first load ───────────────────────────
   useEffect(() => {
-    try {
-      const storedToken = localStorage.getItem('token');
-      const storedUser  = localStorage.getItem('user');
-      if (storedToken && storedUser) {
-        setToken(storedToken);
-        setUser(JSON.parse(storedUser));
+    const rehydrate = async () => {
+      try {
+        const storedToken = localStorage.getItem('token');
+        const storedUser  = localStorage.getItem('user');
+        if (storedToken && storedUser) {
+          const parsed = JSON.parse(storedUser);
+          setToken(storedToken);
+          setUser(parsed);
+
+          // If admin without onboardingComplete flag, check backend for institution
+          const role = parsed?.role;
+          if ((role === 'super_admin' || role === 'admin') && localStorage.getItem('onboardingComplete') !== 'true') {
+            try {
+              const res = await fetch(`${BASE_URL}/auth/me`, {
+                headers: { Authorization: `Bearer ${storedToken}` },
+              });
+              if (res.ok) {
+                const data = await res.json();
+                const userData = data.user || data;
+                if (userData.institution || userData.institutionId || userData.institution_id) {
+                  localStorage.setItem('onboardingComplete', 'true');
+                }
+                // Also update user state with fresh data
+                setUser(userData);
+                localStorage.setItem('user', JSON.stringify(userData));
+              }
+            } catch {
+              // Network error during check — proceed with stored data
+            }
+          }
+        }
+      } catch {
+        // Corrupt storage — clear it
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+      } finally {
+        setLoading(false);
       }
-    } catch {
-      // Corrupt storage — clear it
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-    } finally {
-      setLoading(false);
-    }
+    };
+    rehydrate();
   }, []);
 
   // ─── Helpers ─────────────────────────────────────────────────────────────
@@ -44,10 +70,17 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const getRoleRedirect = (role) => {
+  const getRoleRedirect = (role, userData) => {
     if (role === 'super_admin' || role === 'admin') {
-      const onboarded = localStorage.getItem('onboardingComplete');
-      return onboarded === 'true' ? '/admin-dashboard' : '/onboarding';
+      // Check if user has already onboarded via backend data or localStorage flag
+      const hasInstitution = userData?.institution || userData?.institutionId || userData?.institution_id;
+      const localFlag = localStorage.getItem('onboardingComplete') === 'true';
+      if (hasInstitution || localFlag) {
+        // Ensure the flag is persisted so subsequent loads skip onboarding
+        localStorage.setItem('onboardingComplete', 'true');
+        return '/admin-dashboard';
+      }
+      return '/onboarding';
     }
     switch (role) {
       case 'educator': return '/educator/dashboard';
@@ -107,7 +140,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       persistSession(data.accessToken, data.user);
-      const redirectTo = getRoleRedirect(data.user?.role);
+      const redirectTo = getRoleRedirect(data.user?.role, data.user);
       return { success: true, redirectTo };
     } catch {
       const msg = 'Network error. Please check your connection.';
@@ -130,7 +163,7 @@ export const AuthProvider = ({ children }) => {
   // Expects token + user either in query params or a JSON body from the backend.
   const handleGoogleCallback = useCallback((token, user) => {
     persistSession(token, user);
-    return getRoleRedirect(user?.role);
+    return getRoleRedirect(user?.role, user);
   }, []);
 
   // ─── logout ───────────────────────────────────────────────────────────────

@@ -20,6 +20,16 @@
 
 @media (max-width: 768px) {
   .dashboard-content {
-    padding: 20px;
+    padding: 20px 16px;
+  }
+
+  .main-content {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-content {
+    padding: 16px 12px;
   }
 }

@@ -1,16 +1,39 @@
 .insights-content {
-  padding: 40px;
+  padding: 32px 40px;
   overflow-y: auto;
+  background: #f9fafb;
+  min-height: 100vh;
 }
 
 .insights-content h1 {
   font-size: 24px;
   font-weight: 700;
-  color: #1F2937;
-  margin-bottom: 16px;
+  color: #1f2937;
+  margin: 0 0 4px 0;
 }
 
 .insights-content p {
-  font-size: 16px;
-  color: #6B7280;
+  font-size: 15px;
+  color: #6b7280;
+  margin: 0 0 24px 0;
+}
+
+.stats-cards {
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .insights-content {
+    padding: 20px 16px;
+  }
+
+  .insights-content h1 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .insights-content {
+    padding: 16px 12px;
+  }
 }

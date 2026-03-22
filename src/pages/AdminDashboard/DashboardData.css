@@ -1,73 +1,483 @@
+/* ── Dashboard Data Content ─────────────────────────────────────────── */
+
 .dashboard-data-content {
-  padding: 40px;
+  padding: 32px 40px;
+  background: #f9fafb;
+  min-height: 100vh;
   overflow-y: auto;
 }
 
-.institutional-overview {
-  margin-bottom: 32px;
+/* ── Welcome Section ───────────────────────────────────────────────── */
+
+.admin-welcome-section {
+  margin-bottom: 28px;
 }
 
-.section-title {
-  font-size: 20px;
+.admin-welcome-text h1 {
+  font-size: 26px;
   font-weight: 700;
-  color: #1F2937;
-  margin: 0 0 20px 0;
+  color: #1f2937;
+  margin: 0 0 6px 0;
 }
 
-.stats-grid {
+.admin-welcome-name {
+  color: #2563eb;
+}
+
+.admin-welcome-text p {
+  font-size: 15px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* ── Stats Grid ────────────────────────────────────────────────────── */
+
+.admin-stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 16px;
+  margin-bottom: 28px;
 }
 
-.charts-grid {
+.admin-stat-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  border: 1.5px dashed #e2e8f0;
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.admin-stat-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+  border-color: #94a3b8;
+  transform: translateY(-2px);
+}
+
+.admin-stat-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.admin-stat-card__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-stat-card__label {
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 0 0 4px 0;
+  font-weight: 500;
+}
+
+.admin-stat-card__value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* ── Charts Grid ───────────────────────────────────────────────────── */
+
+.admin-charts-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
   margin-bottom: 20px;
+}
+
+.admin-chart-full {
+  margin-bottom: 28px;
 }
 
 .chart-card {
-  background: white;
-  border-radius: 12px;
+  background: #fff;
+  border-radius: 14px;
   padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
-.chart-card.full-width {
-  margin-bottom: 20px;
-}
-
-.chart-title {
-  font-size: 16px;
+.chart-card__title {
+  font-size: 15px;
   font-weight: 600;
-  color: #1F2937;
+  color: #1f2937;
   margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.cohort-section {
-  background: white;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+.chart-card__empty {
+  font-size: 14px;
+  color: #9ca3af;
+  text-align: center;
+  padding: 40px 0;
 }
+
+/* ── Circle Progress Rings ─────────────────────────────────────────── */
+
+.admin-rings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.admin-ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-ring__fill {
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+.admin-ring__text {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.admin-ring__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Horizontal Bars ───────────────────────────────────────────────── */
+
+.admin-bars-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-hbar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.admin-hbar__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.admin-hbar__value {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.admin-hbar__track {
+  width: 100%;
+  height: 10px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.admin-hbar__fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.8s ease;
+}
+
+/* ── Risk Distribution Bars ────────────────────────────────────────── */
+
+.admin-risk-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-risk-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-risk-bar__info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 200px;
+}
+
+.admin-risk-bar__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.admin-risk-bar__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.admin-risk-bar__count {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-left: auto;
+}
+
+.admin-risk-bar__track {
+  flex: 1;
+  height: 12px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.admin-risk-bar__fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.8s ease;
+}
+
+.admin-risk-bar__pct {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1f2937;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Risk summary stacked bar */
+.admin-risk-summary {
+  display: flex;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.admin-risk-summary__segment {
+  height: 100%;
+  transition: width 0.8s ease;
+}
+
+.admin-risk-summary__segment:first-child {
+  border-radius: 10px 0 0 10px;
+}
+
+.admin-risk-summary__segment:last-child {
+  border-radius: 0 10px 10px 0;
+}
+
+/* ── Study Hours Card ──────────────────────────────────────────────── */
+
+.admin-study-hours-card {
+  margin-bottom: 28px;
+}
+
+.admin-study-hours {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 0;
+}
+
+.admin-study-hours__value {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2563eb;
+  letter-spacing: -0.02em;
+}
+
+.admin-study-hours__label {
+  font-size: 15px;
+  color: #6b7280;
+}
+
+/* ── Error State ───────────────────────────────────────────────────── */
+
+.admin-error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.admin-error-state__icon {
+  color: #dc2626;
+  margin-bottom: 16px;
+}
+
+.admin-error-state h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.admin-error-state p {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 24px 0;
+  max-width: 400px;
+}
+
+.admin-btn-retry {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-btn-retry:hover {
+  background: #1d4ed8;
+}
+
+/* ── Skeleton Loading ──────────────────────────────────────────────── */
+
+.skeleton {
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+.skeleton--welcome-lg {
+  width: 340px;
+  height: 30px;
+  margin-bottom: 8px;
+}
+
+.skeleton--subtitle-lg {
+  width: 300px;
+  height: 18px;
+}
+
+.admin-stat-card--skeleton {
+  padding: 20px;
+}
+
+.skeleton--icon-lg {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.skeleton--label-lg {
+  width: 90px;
+  height: 14px;
+  margin-bottom: 8px;
+}
+
+.skeleton--value-lg {
+  width: 70px;
+  height: 28px;
+}
+
+.skeleton--chart {
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
 
 @media (max-width: 1200px) {
-  .stats-grid {
+  .admin-stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .charts-grid {
+  .admin-charts-grid {
     grid-template-columns: 1fr;
+  }
+
+  .admin-risk-bar__info {
+    min-width: 160px;
   }
 }
 
 @media (max-width: 768px) {
   .dashboard-data-content {
-    padding: 20px;
+    padding: 20px 16px;
   }
 
-  .stats-grid {
+  .admin-welcome-text h1 {
+    font-size: 22px;
+  }
+
+  .admin-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .admin-stat-card__value {
+    font-size: 22px;
+  }
+
+  .admin-charts-grid {
     grid-template-columns: 1fr;
+  }
+
+  .admin-rings-row {
+    gap: 16px;
+  }
+
+  .admin-risk-bar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .admin-risk-bar__info {
+    min-width: 100%;
+  }
+
+  .admin-risk-bar__track {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-data-content {
+    padding: 16px 12px;
+  }
+
+  .admin-welcome-text h1 {
+    font-size: 20px;
   }
 }
