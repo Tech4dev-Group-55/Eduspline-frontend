@@ -42,3 +42,18 @@
   color: #6B7280;
   margin: 0;
 }
+
+@media (max-width: 768px) {
+  .loading-title {
+    font-size: 22px;
+  }
+
+  .loading-text {
+    font-size: 14px;
+  }
+
+  .spinner {
+    width: 48px;
+    height: 48px;
+  }
+}

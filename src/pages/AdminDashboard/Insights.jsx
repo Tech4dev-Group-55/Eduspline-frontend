@@ -13,14 +13,13 @@ const Insights = () => {
       <div className="main-content">
         <TopBar />
         <div className="insights-content">
-          <h1>Insights Page</h1>
-          <p>Student data table will be added here soon!</p>
+          <h1>Insights</h1>
+          <p>Student performance data and analytics</p>
           <div className="stats-cards">
             <StatsCard />
+          </div>
+          <StudentActivityIndex />
         </div>
-        </div>
-        <StudentActivityIndex />
-        
       </div>
     </div>
   );

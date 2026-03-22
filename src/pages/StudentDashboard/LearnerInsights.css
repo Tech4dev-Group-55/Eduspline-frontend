@@ -232,9 +232,58 @@
     gap: 12px;
   }
 
+  .section-header h2 {
+    font-size: 16px;
+  }
+
+  .recommendation-card {
+    padding: 16px;
+  }
+
+  .recommendation-card h3 {
+    font-size: 14px;
+  }
+
+  .module-item {
+    padding: 12px;
+  }
+
   .module-right {
     flex-direction: column;
     gap: 8px;
     align-items: flex-end;
+  }
+
+  .modules-section {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .student-insights-content {
+    padding: 16px 12px;
+  }
+
+  .header-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+
+  .recommendation-card h3 {
+    font-size: 13px;
+  }
+
+  .recommendation-card p {
+    font-size: 12px;
+  }
+
+  .module-name {
+    font-size: 13px;
+  }
+
+  .module-status {
+    font-size: 12px;
+    padding: 3px 8px;
   }
 }

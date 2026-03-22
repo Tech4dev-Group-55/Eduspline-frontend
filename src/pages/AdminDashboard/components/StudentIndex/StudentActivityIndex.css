@@ -238,3 +238,65 @@
   font-size: 0.8rem !important;
   color: #94a3b8 !important;
 }
+
+/* ── Responsive ─────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .sai__table th,
+  .sai__table td {
+    padding: 11px 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sai {
+    border-radius: 12px;
+  }
+
+  .sai__header {
+    padding: 14px 16px 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .sai__title {
+    font-size: 0.85rem;
+  }
+
+  /* Hide less critical columns on mobile */
+  .sai__table th:nth-child(5),
+  .sai__table td:nth-child(5),
+  .sai__table th:nth-child(6),
+  .sai__table td:nth-child(6) {
+    display: none;
+  }
+
+  .sai__table th,
+  .sai__table td {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+
+  .sai__pagination {
+    padding: 10px 16px;
+    justify-content: center;
+  }
+
+  .sai__page-btn {
+    min-width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Also hide email on very small screens */
+  .sai__table th:nth-child(2),
+  .sai__table td:nth-child(2) {
+    display: none;
+  }
+
+  .sai__table th,
+  .sai__table td {
+    padding: 8px 10px;
+  }
+}

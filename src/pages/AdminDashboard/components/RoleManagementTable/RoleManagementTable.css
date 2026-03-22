@@ -105,12 +105,40 @@
 }
 
 @media (max-width: 768px) {
+  .role-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .role-table {
     font-size: 13px;
+    min-width: 500px;
   }
 
   .role-table th,
   .role-table td {
     padding: 10px 12px;
+  }
+
+  .add-new-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .role-table {
+    font-size: 12px;
+    min-width: 420px;
+  }
+
+  .role-table th,
+  .role-table td {
+    padding: 8px 10px;
+  }
+
+  .status-select {
+    padding: 4px 24px 4px 8px;
+    font-size: 12px;
   }
 }
