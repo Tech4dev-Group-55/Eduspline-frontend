@@ -48,10 +48,6 @@ const RoleManagementTable = () => {
     ));
   };
 
-  const handleAddNew = () => {
-    alert('Add new user functionality - Backend integration pending');
-  };
-
   if (loading) {
     return (
       <div className="role-table-container">
@@ -112,9 +108,6 @@ const RoleManagementTable = () => {
           ))}
         </tbody>
       </table>
-      <button className="add-new-btn" onClick={handleAddNew}>
-        Add new
-      </button>
     </div>
   );
 };

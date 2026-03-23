@@ -14,7 +14,7 @@ import LoadingScreen from '../pages/AdminDashboard/LoadingScreen';
 import Settings from '../pages/AdminDashboard/Settings';
 import Insights from '../pages/AdminDashboard/Insights';
 import StudentDashboard from '../pages/StudentDashboard/StudentDashboard';
-import LearnerInsights from '../pages/StudentDashboard/LearnerInsights';
+
 
 function AppRoutes() {
   return (
@@ -39,7 +39,6 @@ function AppRoutes() {
 
         {/* Student/Learner Dashboard Routes */}
         <Route path="/student-dashboard" element={<StudentDashboard />} />
-        <Route path="/student-dashboard/insights" element={<LearnerInsights />} />
         <Route path="/learner/dashboard" element={<StudentDashboard />} />
       </Routes>
     </BrowserRouter>

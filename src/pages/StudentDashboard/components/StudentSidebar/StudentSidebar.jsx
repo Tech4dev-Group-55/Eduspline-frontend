@@ -43,12 +43,6 @@ const StudentSidebar = () => {
             <span>📊 Dashboard</span>
           </button>
 
-          <button
-            onClick={() => { navigate('/student-dashboard/insights'); close(); }}
-            className={`nav-item ${isActive('/student-dashboard/insights') ? 'active' : ''}`}
-          >
-            <span>💡 Insights</span>
-          </button>
         </nav>
 
         <button className="logout-btn" onClick={handleLogout}>

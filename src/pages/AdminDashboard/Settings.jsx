@@ -82,13 +82,7 @@ const Settings = () => {
     }
   };
 
-  const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      showToast('success', `"${file.name}" ready to upload. (Backend integration pending)`);
-    }
-  };
-
+  
   return (
     <div className="admin-dashboard">
       <Sidebar />
@@ -210,52 +204,9 @@ const Settings = () => {
               <RoleManagementTable />
             </div>
 
-            {/* ── CSV Upload ─────────────────────────────────────────────── */}
-            <div className="csv-upload-section">
-              <label htmlFor="csv-upload" className="csv-label">
-                Upload CSV file
-              </label>
-              <input
-                id="csv-upload"
-                type="file"
-                accept=".csv"
-                onChange={handleFileUpload}
-                style={{ display: 'none' }}
-              />
-              <label htmlFor="csv-upload" className="csv-upload-btn">
-                choose file
-              </label>
-            </div>
-
-            {/* ── Danger zone ────────────────────────────────────────────── */}
-            <div className="danger-zone">
-              <button
-                className="delete-account-btn"
-                onClick={() => setShowDeleteModal(true)}
-              >
-                Delete account
-              </button>
-            </div>
-
           </div>
         </div>
       </div>
-
-      {/* ── Delete modal ────────────────────────────────────────────────── */}
-      {showDeleteModal && (
-        <div className="modal-overlay" onClick={() => setShowDeleteModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h3>Delete Account?</h3>
-            <p>This action cannot be undone. All data will be permanently deleted.</p>
-            <div className="modal-actions">
-              <button className="cancel-btn" onClick={() => setShowDeleteModal(false)}>
-                Cancel
-              </button>
-              <button className="confirm-delete-btn">Delete</button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
