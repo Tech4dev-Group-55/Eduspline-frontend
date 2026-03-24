@@ -21,9 +21,9 @@ export const AuthProvider = ({ children }) => {
           setToken(storedToken);
           setUser(parsed);
 
-          // If admin without onboardingComplete flag, check backend for institution
+          // Fetch fresh user data for admins on rehydration
           const role = parsed?.role;
-          if ((role === 'super_admin' || role === 'admin') && localStorage.getItem('onboardingComplete') !== 'true') {
+          if (role === 'super_admin' || role === 'admin') {
             try {
               const res = await fetch(`${BASE_URL}/auth/me`, {
                 headers: { Authorization: `Bearer ${storedToken}` },
@@ -31,10 +31,6 @@ export const AuthProvider = ({ children }) => {
               if (res.ok) {
                 const data = await res.json();
                 const userData = data.user || data;
-                if (userData.institution || userData.institutionId || userData.institution_id) {
-                  localStorage.setItem('onboardingComplete', 'true');
-                }
-                // Also update user state with fresh data
                 setUser(userData);
                 localStorage.setItem('user', JSON.stringify(userData));
               }
@@ -72,14 +68,8 @@ export const AuthProvider = ({ children }) => {
 
   const getRoleRedirect = (role, userData) => {
     if (role === 'super_admin' || role === 'admin') {
-      // Check if user has already onboarded via backend data or localStorage flag
-      const hasInstitution = userData?.institution || userData?.institutionId || userData?.institution_id;
-      const localFlag = localStorage.getItem('onboardingComplete') === 'true';
-      if (hasInstitution || localFlag) {
-        // Ensure the flag is persisted so subsequent loads skip onboarding
-        localStorage.setItem('onboardingComplete', 'true');
-        return '/admin-dashboard';
-      }
+      // Always require admins to complete onboarding on each login
+      localStorage.removeItem('onboardingComplete');
       return '/onboarding';
     }
     switch (role) {

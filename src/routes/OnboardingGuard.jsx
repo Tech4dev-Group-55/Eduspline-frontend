@@ -22,11 +22,7 @@ const OnboardingGuard = ({ children }) => {
     return <Navigate to="/learner/dashboard" replace />;
   }
 
-  const onboarded = localStorage.getItem('onboardingComplete') === 'true';
-  if (onboarded) {
-    return <Navigate to="/admin-dashboard" replace />;
-  }
-
+  // Always allow admins to access onboarding
   return children;
 };
 
