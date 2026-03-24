@@ -14,6 +14,8 @@ import LoadingScreen from '../pages/AdminDashboard/LoadingScreen';
 import Settings from '../pages/AdminDashboard/Settings';
 import Insights from '../pages/AdminDashboard/Insights';
 import StudentDashboard from '../pages/StudentDashboard/StudentDashboard';
+import AdminRoute from './AdminRoute';
+import OnboardingGuard from './OnboardingGuard';
 
 
 function AppRoutes() {
@@ -27,15 +29,17 @@ function AppRoutes() {
         <Route path="/auth/callback" element={<GoogleCallback />} />
         <Route path="/auth/google/callback" element={<GoogleCallback />} />
         <Route path="/verification" element={<Verification />} />
-        <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/accept-invite" element={<AcceptInvite />} />
-        
-        {/* Admin Dashboard Routes */}
-        <Route path="/admin-dashboard" element={<DashboardData />} />
-        <Route path="/admin-dashboard/upload" element={<AdminDashboard />} />
-        <Route path="/admin-dashboard/loading" element={<LoadingScreen />} />
-        <Route path="/admin-dashboard/settings" element={<Settings />} />
-        <Route path="/admin-dashboard/insights" element={<Insights />} />
+
+        {/* Onboarding — only for admins who haven't onboarded yet */}
+        <Route path="/onboarding" element={<OnboardingGuard><Onboarding /></OnboardingGuard>} />
+
+        {/* Admin Dashboard Routes — requires completed onboarding */}
+        <Route path="/admin-dashboard" element={<AdminRoute><DashboardData /></AdminRoute>} />
+        <Route path="/admin-dashboard/upload" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+        <Route path="/admin-dashboard/loading" element={<AdminRoute><LoadingScreen /></AdminRoute>} />
+        <Route path="/admin-dashboard/settings" element={<AdminRoute><Settings /></AdminRoute>} />
+        <Route path="/admin-dashboard/insights" element={<AdminRoute><Insights /></AdminRoute>} />
 
         {/* Student/Learner Dashboard Routes */}
         <Route path="/student-dashboard" element={<StudentDashboard />} />
